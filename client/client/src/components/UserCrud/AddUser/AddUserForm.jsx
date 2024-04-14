@@ -2,14 +2,24 @@
 /* eslint-disable react/prop-types */
 
 import { Modal, Form, Input, Button, Space, Divider, Select } from "antd";
+import {v4 as uuidv4 } from 'uuid'
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../store/UserCrudSlice/UserCrudSlice";
 
-const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
-  const [editForm] = Form.useForm();
+const AddUserForm = ({ visible, onCancel }) => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch()
+
+  const handleAddUser = async (userData) =>{
+    const id = uuidv4()
+    const userDataWithId = {...userData, id}
+    await dispatch(createUser(userDataWithId))
+  }
 
   const onFinish = (values) => {
     console.log("Formulario enviado:", values);
-    editForm.resetFields(); // Reinicia los campos del formulario después de enviar
-    /* onCreate(values); // Pasa los valores del formulario a la función onCreate */
+    form.resetFields(); // Reinicia los campos del formulario después de enviar
+    handleAddUser(values); // Pasa los valores del formulario a la función onCreate
   };
 
   const validateAge = (_, value) => {
@@ -22,26 +32,25 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
   return (
     <Modal
       open={visible}
-      title="Editar Usuario"
+      title="Agregar Usuario"
       onCancel={onCancel}
       footer={[
-        <Button key="submit" type="primary" onClick={() => editForm.submit()}>
-          Editar Usuario
+        <Button key="submit" type="primary" onClick={() => form.submit()}>
+          Agregar Usuario
         </Button>,
       ]}
     >
       <Divider />
       <Form
-        form={editForm}
+        form={form}
         layout="vertical"
         name="add_user_form"
         onFinish={onFinish}
       >
         <Space direction="vertical" size="large" style={{ marginLeft: "30px" }}>
           <Form.Item
-            name="usuario"
+            name="username"
             label="Usuario"
-            initialValue={userData?.username}
             rules={[
               { required: true, message: "Por favor ingresa el usuario" },
               { whitespace: true, message: "El usuario no puede estar vacío" },
@@ -50,9 +59,8 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
             <Input size="medium" />
           </Form.Item>
           <Form.Item
-            name="nombre"
+            name="name"
             label="Nombre"
-            initialValue={userData?.name}
             rules={[
               { required: true, message: "Por favor ingresa el nombre" },
               { whitespace: true, message: "El nombre no puede estar vacío" },
@@ -61,9 +69,8 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
             <Input size="medium" />
           </Form.Item>
           <Form.Item
-            name="estado"
+            name="status"
             label="Estado"
-            initialValue={userData?.status}
             rules={[{ required: true, message: "Por favor ingresa el estado" }]}
           >
             <Select>
@@ -77,7 +84,6 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
           <Form.Item
             name="email"
             label="Email"
-            initialValue={userData?.email}
             rules={[
               { required: true, message: "Por favor ingresa el email" },
               {
@@ -91,9 +97,8 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
           </Form.Item>
 
           <Form.Item
-            name="apellido"
+            name="lastname"
             label="Apellido"
-            initialValue={userData?.lastname}
             rules={[
               { required: true, message: "Por favor ingresa el apellido" },
               { whitespace: true, message: "El apellido no puede estar vacío" },
@@ -103,9 +108,8 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
           </Form.Item>
 
           <Form.Item
-            name="edad"
+            name="age"
             label="Edad"
-            initialValue={userData?.age}
             rules={[
               { required: true, message: "Por favor ingresa la edad" },
               { validator: validateAge },
@@ -120,4 +124,4 @@ const EditUserForm = ({ visible, onCancel, onCreate, userData }) => {
   );
 };
 
-export default EditUserForm;
+export default AddUserForm;

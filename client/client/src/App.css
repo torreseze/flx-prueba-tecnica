@@ -42,3 +42,16 @@
 .ant-moda-content{
   width: '600px';
 }
+
+.spinner-container{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  height: 70dvh
+}
+
+.notification-delete{ 
+  margin-top: 150px;
+  height: 188px; 
+  width: 440px
+}

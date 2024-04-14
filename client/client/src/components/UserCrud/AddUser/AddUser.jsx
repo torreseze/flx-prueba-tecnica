@@ -13,7 +13,7 @@ const AddUser = () => {
   return (
     <>
     <Button onClick={handleOpen} size="large" className="add-user-button">Agregar usuario</Button>
-    <AddUserForm visible={open} onCancel={handleOpen} />
+    <AddUserForm visible={open} onCancel={handleOpen}/>
     </>
   )
 } 

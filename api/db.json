@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "user1",
-      "name": "John",
-      "lastname": "Doe",
-      "email": "john.doe@example.com",
-      "status": "active",
-      "age": 30
-    },
-    {
       "id": 2,
       "username": "user2",
       "name": "Jane",
@@ -449,6 +440,15 @@
       "email": "grace.allen@example.com",
       "status": "active",
       "age": 32
+    },
+    {
+      "username": "pedrtiv1",
+      "email": "torreseze000@gmail.com",
+      "name": "pedrito",
+      "status": "active",
+      "lastname": "paslito",
+      "age": "12",
+      "id": "2e65e662-fc11-4e93-a093-5e1fbbb68140"
     }
   ]
 }

@@ -2,69 +2,44 @@
 
 import { Space, Table, Tag } from "antd";
 import { useState } from "react";
-import DeleteNotification from "../DeleteUser/DeleteNotification";
-import EditUserForm from "../EditUser/EditUserForm";
-
-const dummy = [
-  {
-   
-    id: 1,
-    username: "user1",
-    name: "John",
-    lastname: "Doe",
-    email: "john.doe@example.com",
-    status: "active",
-    age: 30,
-  },
-  {
-   
-    id: 2,
-    username: "user2",
-    name: "Jane",
-    lastname: "Smith",
-    email: "jane.smith@example.com",
-    status: "inactive",
-    age: 25,
-  },
-  {
-    
-    id: 3,
-    username: "user3",
-    name: "Michael",
-    lastname: "Johnson",
-    email: "michael.johnson@example.com",
-    status: "active",
-    age: 35,
-  },
-];
-
+import DeleteNotification from "../UserCrud/DeleteUser/DeleteNotification";
+import EditUserForm from "../UserCrud/EditUser/EditUserForm";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../store/UserCrudSlice/UserCrudSlice";
 
 const UserList = () => {
 
-  const [open , setOpen] = useState(false);
+  const [openEditModal , setOpenEditModal] = useState(false);
   const [openDeleteNotification, setOpenDeleteNotification] = useState(false)
-  const [userData, setUserData] = useState([]);
+
+  const dispatch = useDispatch()
+
+  const store = useSelector(state => state.UserCrudSlice)
 
   const columns = [
     {
       title: "Usuario",
       dataIndex: "username",
       key: "username",
+      width: 285
     },
     {
       title: "Nombre",
       dataIndex: "name",
       key: "name",
+      width: 285
     },
     {
       title: "Apellido",
       dataIndex: "lastname",
       key: "lastname",
+      width: 285
     },
     {
       title: "Estado",
       dataIndex: "status",
       key: "status",
+      width: 100,
       render: (_, { status }) => (
         <>
           {
@@ -72,10 +47,10 @@ const UserList = () => {
               style={{
                 background: status === "active" ? "#f6ffed" : "#fff1f0",
                 color: status === "active" ? "#52C41A" : "#F5222D",
-                borderColor: status === "active" ? "#52C41A" : "#F5222D",
+                borderColor: status === "active" ? "#52C41A" : "#F5222D"
               }}
             >
-              {status.toUpperCase()}
+              {status?.toUpperCase()}
             </Tag>
           }
         </>
@@ -84,6 +59,7 @@ const UserList = () => {
     {
       title: "Acciones",
       key: "action",
+      width: 150,
   
       render: (_, record) => (
         <Space size="middle">
@@ -97,19 +73,22 @@ const UserList = () => {
   ];
 
   const handleOpenEditForm = (record) => {
-   setUserData(record)
-   setOpen(true)
+    dispatch(selectUser(record))
+    setOpenEditModal(true)
+    console.log('click')
   }
 
   const handleCancel = () => {
-    setOpen(false);
+    dispatch(selectUser({}))
+    setOpenEditModal(false);
   }
 
   const handleOpenDeleteNotification = (record) => {
-    setUserData(record)
+    dispatch(selectUser(record))
     setOpenDeleteNotification(true)
   }
   const handleCancelDelete =() => {
+    dispatch(selectUser({}))
     setOpenDeleteNotification(false)
   }
 
@@ -117,12 +96,12 @@ const UserList = () => {
     <>
       <Table 
         columns={columns} 
-        dataSource={dummy} 
+        dataSource={store.users || []} 
         rowKey={record => record.id} 
          
       />
-      <EditUserForm visible={open} userData={userData} onCancel={handleCancel} />
-      <DeleteNotification open={openDeleteNotification} userData={userData} onCancel={handleCancelDelete} />
+      <EditUserForm visible={openEditModal} store={store.selectedUser} onCancel={handleCancel} />
+      <DeleteNotification open={openDeleteNotification} onCancel={handleCancelDelete} />
     </>
   );
 };
