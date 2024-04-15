@@ -2,12 +2,12 @@
   "users": [
     {
       "id": 5,
-      "username": "etorres",
+      "username": "etorres213",
       "name": "Daniel",
       "lastname": "Torres",
       "email": "torreseze000@gmail.com",
       "status": "active",
-      "age": 25
+      "age": 10
     },
     {
       "id": 6,

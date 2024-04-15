@@ -68,7 +68,7 @@ const EditUserForm = ({ visible, onCancel }) => {
     if (!userData.lastname || !userData.lastname.trim()) {
       errors.lastname = 'El apellido es requerido';
     }
-    if (userData.age < 0 || isNaN(userData.age)) {
+    if (userData.age < 0 || userData.age === '') {
       errors.age = 'La edad debe ser un número válido';
     }
 
