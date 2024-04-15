@@ -55,7 +55,7 @@ const userCrudSlice = createSlice({
         state.loading = true
       })
       .addCase(getUsersList.fulfilled, (state, action) => {
-        state.users = action.payload.data
+        state.users = action.payload
         state.loading = false
       })
       .addCase(getUsersFiltered.pending, (state) => {
