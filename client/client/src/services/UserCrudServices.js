@@ -5,8 +5,8 @@ const baseUrl = 'http://localhost:4000/users'
 export const getUsers = async () => {
   try {
     const response = await axios.get(baseUrl);
-
-    return response.data;
+    
+    return  response.data
   } catch (error) {
     console.log(error);
   }
@@ -50,8 +50,17 @@ export const postNewUser = async (userData) => {
 } 
 
 export const putUser = async (id, userData) => {
+  console.log(id, userData)
   try {
-    await axios.put(`${baseUrl}/${id}`, userData)
+    await axios.put(`${baseUrl}/${id}`, {
+      id,
+      username: userData.username,
+      name: userData.name,
+      lastname: userData.lastname,
+      email: userData.email,
+      status: userData.status,
+      age: parseInt(userData.age, 10)
+    });
   }catch(error) {
     console.log(error)
   }

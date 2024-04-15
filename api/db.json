@@ -1,40 +1,13 @@
 {
   "users": [
     {
-      "id": 2,
-      "username": "user2",
-      "name": "Jane",
-      "lastname": "Smith",
-      "email": "jane.smith@example.com",
-      "status": "inactive",
-      "age": 25
-    },
-    {
-      "id": 3,
-      "username": "user3",
-      "name": "Michael",
-      "lastname": "Johnson",
-      "email": "michael.johnson@example.com",
-      "status": "active",
-      "age": 35
-    },
-    {
-      "id": 4,
-      "username": "user4",
-      "name": "Emily",
-      "lastname": "Brown",
-      "email": "emily.brown@example.com",
-      "status": "active",
-      "age": 28
-    },
-    {
       "id": 5,
-      "username": "user5",
-      "name": "William",
-      "lastname": "Wilson",
-      "email": "william.wilson@example.com",
-      "status": "inactive",
-      "age": 40
+      "username": "etorres",
+      "name": "Daniel",
+      "lastname": "Torres",
+      "email": "torreseze000@gmail.com",
+      "status": "active",
+      "age": 25
     },
     {
       "id": 6,
@@ -440,15 +413,6 @@
       "email": "grace.allen@example.com",
       "status": "active",
       "age": 32
-    },
-    {
-      "username": "pedrtiv1",
-      "email": "torreseze000@gmail.com",
-      "name": "pedrito",
-      "status": "active",
-      "lastname": "paslito",
-      "age": "12",
-      "id": "2e65e662-fc11-4e93-a093-5e1fbbb68140"
     }
   ]
 }

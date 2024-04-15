@@ -2,10 +2,10 @@
 
 import { Space, Table, Tag } from "antd";
 import { useState } from "react";
-import DeleteNotification from "../UserCrud/DeleteUser/DeleteNotification";
-import EditUserForm from "../UserCrud/EditUser/EditUserForm";
+import DeleteNotification from "../DeleteUser/DeleteNotification";
+import EditUserForm from "../EditUser/EditUserForm";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../store/UserCrudSlice/UserCrudSlice";
+import { selectUser } from "../../../store/UserCrudSlice/UserCrudSlice";
 
 const UserList = () => {
 
@@ -75,7 +75,6 @@ const UserList = () => {
   const handleOpenEditForm = (record) => {
     dispatch(selectUser(record))
     setOpenEditModal(true)
-    console.log('click')
   }
 
   const handleCancel = () => {

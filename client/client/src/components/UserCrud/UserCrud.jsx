@@ -1,12 +1,12 @@
 import { Breadcrumb, Space } from "antd";
 
-import UserList from "../UserList/UserList";
 
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUsersList } from "../../store/UserCrudSlice/UserCrudSlice";
 import Actions from "./Actions/Actions";
 import Spinner from "../Spinner";
+import UserList from "./UserList/UserList";
 
 const UserCrud = () => {
   const dispatch = useDispatch();

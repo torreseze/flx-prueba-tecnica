@@ -47,11 +47,18 @@
   display: flex; 
   justify-content: center;
   align-items: center;
-  height: 70dvh
+  height: 30dvh
 }
 
 .notification-delete{ 
   margin-top: 150px;
   height: 188px; 
   width: 440px
+}
+
+.label-form{
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: black
 }
